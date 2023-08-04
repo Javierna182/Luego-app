@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import HomeProjects from '../HomeProjects/HomeProjects';
 
 import './App.css';
 
@@ -38,6 +39,10 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
+
+          <Route exact path ="/homeProjects">
+            <HomeProjects />
+          </Route>
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
