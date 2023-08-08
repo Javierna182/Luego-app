@@ -7,10 +7,10 @@ const app = express();
 
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
-const projectsRouter = require('./routes/ProjectsRouter');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const projectsRouter = require('./routes/ProjectsRouter');
 
 // Express middleware
 app.use(express.json());
@@ -24,7 +24,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/project', projectsRouter);
+app.use('/api/projects', projectsRouter);
 
 // Serve static files
 app.use(express.static('build'));

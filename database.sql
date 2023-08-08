@@ -16,7 +16,9 @@ CREATE TABLE "projects" (
   "title" VARCHAR(120) NOT NULL,
   "comments" TEXT NOT NULL,
   "status"  BOOLEAN,
-  "share" TEXT NOT NULL
+  "share" TEXT NOT NULL,
+  "coverImage" VARCHAR(120) NOT NULL,
+  "user_id" INT REFERENCES "user"
 );
 
 -- IMAGES TABLE
@@ -40,3 +42,17 @@ CREATE TABLE "projects_images" (
   JOIN projects_images ON projects.id = projects_images.project_id
   JOIN  images ON images.id = projects_images.images_id
   WHERE projects.id = $1;`
+
+--------[ DATA! ]---------
+
+--starter project--
+INSERT INTO "projects" ("title", "comments", "status", "share", "coverImage")
+VALUES
+('Rey Mono', 'this is a monkey sticker', 'false', 'link', 'mico1.png');
+
+--starter images from project--
+INSERT INTO "images" ("name", "url")
+VALUES
+('outline mono', 'mico1.png'),
+('black and white mono', 'mico2.png'),
+('final mono', 'mico3.png');
