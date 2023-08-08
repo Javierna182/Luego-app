@@ -41,9 +41,9 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-          <Route exact path ="/homeprojects">
+          {/* <Route exact path ="/homeprojects">
             <HomeProjects />
-          </Route>
+          </Route> */}
 
           <Route exact path ="/newproject/:id">
             <NewProject/>

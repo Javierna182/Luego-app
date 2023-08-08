@@ -36,27 +36,27 @@ function UserPage() {
 
   return (
     <main>
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <button type="submit" onClick={() => goToNewProject()}>Add New +</button>
+      <div className="container">
+      <button className="btn" type="submit" onClick={() => goToNewProject()}>Add New +</button>
         <h2>Don't forget your good ideas!</h2>
-        <section className="projects">
           <button>All</button>
           <button>Uncomplete</button>
           <button>Complete</button>
-      {
-        userProjects.map(project => (
-          <div key={project.id}>
-            <h3>{project.title}</h3>
-            <h4>{project.comments}</h4>
-            <h4>{project.status}</h4>
-            <h4>{project.share}</h4>
-            <img src={project.coverImage} alt={project.title}/>
-          </div>
-        ))
-      }
+        <section className="projects">
+            {userProjects.map(project => {
+                return(
+                <div key={project.id}>
+                    <h3>{project.title}</h3>
+                    <h4>{project.comments}</h4>
+                    <h4>{project.status}</h4>
+                    <h4>{project.share}</h4>
+                    <img src={project.coverImage} alt={project.title}/>
+                </div>
+                );
+          })}
       </section>
+    <h2>Welcome, {user.username}!</h2>
+    <p>Your ID is: {user.id}</p>
     <LogOutButton className="btn" />
     </div>
     </main>

@@ -28,9 +28,9 @@ function Nav() {
               Home
             </Link>
             
-            <Link className="navLink" to="/homeProjects">
+            {/* <Link className="navLink" to="/homeProjects">
               Home Projects
-            </Link>
+            </Link> */}
 
             <Link className="navLink" to="/info">
               Info Page
