@@ -2,7 +2,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 
 function* fetchProjects() {
     try {
-        const response = yield fetch('/api/project');
+        const response = yield fetch('/api/projects');
         if (!response.ok) {
             throw new Error("Network response was not OK");
         }

@@ -19,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import HomeProjects from '../HomeProjects/HomeProjects';
+import ProjectDetails from '../ProjectDetails/ProjectDetails';
 import NewProject from '../NewProject/NewProject';
 
 import './App.css';
@@ -41,11 +41,11 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* <Route exact path ="/homeprojects">
-            <HomeProjects />
-          </Route> */}
+          <Route exact path ="/ProjectDetails/:id">
+            <ProjectDetails />
+          </Route>
 
-          <Route exact path ="/newproject/:id">
+          <Route exact path ="/newproject">
             <NewProject/>
           </Route>
 

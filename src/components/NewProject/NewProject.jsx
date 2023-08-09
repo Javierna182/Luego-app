@@ -4,7 +4,7 @@ function NewProject() {
 
     const history = useHistory();
 
-    const goToHomeProject = () => {
+    const goToHome = () => {
         history.push(`/home`)
     }
 
@@ -12,7 +12,7 @@ function NewProject() {
       <main>
         <div className="container">
         <h1>New Project</h1>
-        <button className="btn" type="submit" onClick={goToHomeProject}>Go To Home</button>
+        <button className="btn" type="submit" onClick={goToHome}>Go To Home</button>
 
         <section className="newProject">
             <input type="text" placeholder="New Name"/>
