@@ -26,7 +26,7 @@ function UserPage() {
   return (
     <main>
       <div className="container">
-      <button className="btn" type="submit" onClick={() => goToNewProject()}>Add New +</button>
+      <button className="btn" onClick={() => goToNewProject()}>Add New +</button>
         <h2>Don't forget your good ideas!</h2>
           <button>All</button>
           <button>Uncomplete</button>

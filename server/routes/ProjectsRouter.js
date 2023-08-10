@@ -20,11 +20,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
+
 router.post('/', rejectUnauthenticated, (req, res) => {
-  const { name,type } = req.body;
-  const queryText = `INSERT INTO "projects" ("title", "comments", "status", "share", "coverImage", "user_id" 
-                    VALUES ($1, $2, $3, $4, $5, $6));`;
-  pool.query(queryText, [name, type, req.user.id]).then((results) => {
+  console.log('in projects router post:', req.body)
+  const { title, comments, share, status, coverImage } = req.body;
+  const queryText = `INSERT INTO "projects" ("title", "comments", "share", "status", "coverImage", "user_id") 
+                    VALUES ($1, $2, $3, $4, $5, $6);`;
+  pool.query(queryText, [title, comments, share, status, coverImage, req.user.id]).then((results) => {
     res.sendStatus(201);
   }).catch((error) => {
     console.log(error);
