@@ -19,6 +19,10 @@ function ProjectDetails() {
     const goToHome = () => {
         history.push(`/home`)
     }
+
+    const goToEdit = () => {
+      history.push(`/editProject/${project.id}`)
+    }
     
     if (project === undefined){
       return null;
@@ -37,6 +41,7 @@ function ProjectDetails() {
                     <h4>{project.status}</h4>
                     <h4>{project.share}</h4>
                     <img src={project.coverImage} alt={project.title}/>
+                    <button className="btn" onClick={goToEdit}>Edit</button>
                 </div>
                
             {/* <input type="text" placeholder="New Name"/>

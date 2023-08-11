@@ -34,4 +34,55 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  //check to see if the user is logged in
+  console.log(req.isAuthenticated());
+  console.log(req.user);
+  const queryText = `SELECT * FROM "projects" WHERE user_id = $1 AND id =$2;`;
+  // const queryText = `SELECT * FROM "projects" ORDERED BY "status";`;
+  pool.query(queryText, [req.user.id, req.params.id]).then((result) => {//used to show just the info of the user that is logged in
+    if (result.rows.length === 1){
+      res.status(200).send(result.rows[0])
+    } else{
+      res.sendStatus(404);
+    };
+  }).catch((error) => {
+    console.log(error);
+    res.sendStatus(500);
+  })
+});
+
+
+router.put('/:id', (req, res) => {
+  let updatedProject = req.body;
+  let projectIndex = req.params.id;
+  let queryUpdate =`
+  UPDATE "projects" SET "title" = $1, "comments" = $2, "share" = $3, "status" = $4, "coverImage" = $5
+  WHERE id = $6;
+  `;
+  pool.query(queryUpdate, [updatedProject.title, updatedProject.comments, updatedProject.share,
+    updatedProject.status, updatedProject.coverImage, projectIndex])
+    .then(() => {
+      res.sendStatus(204)
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+});
+
+router.delete('/:id', (req, res) => {
+  let projectIndex = req.params.id;
+  let queryUpdate =`
+  DELETE FROM "projects" 
+  WHERE id = $1;
+  `;
+  pool.query(queryUpdate, [projectIndex])
+    .then(() => {
+      res.sendStatus(204)
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+});
+
 module.exports = router;

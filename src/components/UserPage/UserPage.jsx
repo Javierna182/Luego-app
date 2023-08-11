@@ -16,7 +16,7 @@ function UserPage() {
   }, []);
 
     const goToNewProject = () => {
-        history.push(`/newproject`)
+        history.push(`/addproject`)
     }
 
     const goToProjectDetails = (id) => {

@@ -45,7 +45,11 @@ function App() {
             <ProjectDetails />
           </Route>
 
-          <Route exact path ="/newproject">
+          <Route exact path ="/addproject">
+            <NewProject/>
+          </Route>
+
+          <Route exact path="/editProject/:id">
             <NewProject/>
           </Route>
 
