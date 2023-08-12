@@ -9,13 +9,19 @@ function ProjectDetails() {
     const projects = useSelector(store => store.projects);// use to select from the projects DB
     const project = projects.find(project => project.id == id);// filters the projects so we get the project that we want
 
+    const images = useSelector(store => store.images);// use to select from the images DB
+
     const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({ type: "FETCH_PROJECTS", payload: project});
+        dispatch({ type: "FETCH_IMAGES", payload: id});
     }, []);
-
+    
+    // useEffect(() => {
+    //     dispatch({ type: "FETCH_PROJECTS", payload: project});
+    // }, []);
+    
     const goToHome = () => {
         history.push(`/home`)
     }
@@ -41,6 +47,15 @@ function ProjectDetails() {
                     <h4>{project.status}</h4>
                     <h4>{project.share}</h4>
                     <img src={project.coverImage} alt={project.title}/>
+                    <ul>
+                      {
+                        images.map(imagesToDisplay => <div key={imagesToDisplay.url}>
+                          <li>
+                          <img src={imagesToDisplay.url} alt={imagesToDisplay.name}/>
+                          </li>
+                        </div>)
+                      }
+                    </ul>
                     <button className="btn" onClick={goToEdit}>Edit</button>
                 </div>
                

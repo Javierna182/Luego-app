@@ -1,8 +1,13 @@
 import { put, takeEvery } from 'redux-saga/effects';
 
-function* fetchImages() {
+function* fetchImages(action) {
     try {
-        const response = yield fetch('/api/images');
+        console.log('heree',action.payload)
+        const response = yield fetch(`/api/images/`,{
+            method: 'POST',
+            body: JSON.stringify({id:action.payload}),
+            headers: { 'Content-Type': 'application/json' }
+        });
         if (!response.ok) {
             throw new Error("Network response was not OK");
         }
@@ -18,3 +23,4 @@ function* imagesSaga(){
 }
 
 export default imagesSaga;
+
