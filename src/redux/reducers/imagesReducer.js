@@ -1,12 +1,12 @@
 // Used to store projects returned from the server
-function projectsReducer(state = [], action){
+function imagesReducer(state = [], action){
     switch (action.type) {
-        case 'SET_PROJECTS':
+        case 'SET_IMAGES':
             return action.payload;
         default:
             return state;    
     }
 }
 
-export default projectsReducer;
+export default imagesReducer;
 
