@@ -59,7 +59,7 @@ router.put('/:id', (req, res) => {
   let queryUpdate =`
   UPDATE "projects" SET "title" = $1, "comments" = $2, "share" = $3, "status" = $4, "coverImage" = $5
   WHERE id = $6;
-  `;
+  `;//AND "user_id" = $7
   pool.query(queryUpdate, [updatedProject.title, updatedProject.comments, updatedProject.share,
     updatedProject.status, updatedProject.coverImage, projectIndex])
     .then(() => {

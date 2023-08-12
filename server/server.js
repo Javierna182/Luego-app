@@ -11,6 +11,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const projectsRouter = require('./routes/ProjectsRouter');
+const imagesRouter = require('./routes/imagesRouter');
+
 
 // Express middleware
 app.use(express.json());
@@ -25,6 +27,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/projects', projectsRouter);
+app.use('/api/images', imagesRouter);
 
 // Serve static files
 app.use(express.static('build'));

@@ -56,3 +56,8 @@ VALUES
 ('outline mono', 'mico1.png'),
 ('black and white mono', 'mico2.png'),
 ('final mono', 'mico3.png');
+
+INSERT INTO "projects_images" ("project_id", "image_id")
+VALUES 
+(1,1), (1,2), (1,3)  --Monkey    
+; 

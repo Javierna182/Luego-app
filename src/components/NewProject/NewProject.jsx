@@ -61,19 +61,19 @@ function NewProject() {
       <main>
         <div className="container">
         <h1>{id ? 'Edit Project' : 'New Project'}</h1>
-        <h3>{id}</h3>
+        {/* <h3>{id}</h3> */}
         <button className="btn" type="submit" onClick={goToHome}>Go To Home</button>
 
         {/* <section className="newProject" onSubmit={addProject}> */}
         <section className="newProject">
-            <input value={title} type="text" placeholder="New Name" onChange={(event) => {
+            <p>Name:<input value={title} type="text" placeholder="New Name" onChange={(event) => {
               // console.log(event)
               setTitle(event.target.value)
-              }}/>
-            <textarea placeholder="Comments" name="description" onChange={(event) => setComments(event.target.value)}/>
-            <input type="checkbox" placeholder="Satus" onChange={(event) => setStatus(event.target.checked)}/>
-            <input type="text" placeholder="Share" onChange={(event) => setShare(event.target.value)}/>
-            <input type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/>
+              }}/></p>
+            <p>Comments:<textarea value={comments} placeholder="Comments" name="description" onChange={(event) => setComments(event.target.value)}/></p>
+            <p>status:<input value={status} type="checkbox" placeholder="Satus" onChange={(event) => setStatus(event.target.checked)}/></p>
+            <p>Share:<input value={share} type="text" placeholder="Share" onChange={(event) => setShare(event.target.value)}/></p>
+            <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
             <button>Uncomplete</button>
             <button>Share</button>
             {/* <button>Delete</button> */}
