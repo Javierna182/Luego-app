@@ -37,7 +37,7 @@ function UserPage() {
                 <div key={project.id}>
                     <h3>{project.title}</h3>
                     <h4>{project.comments}</h4>
-                    <h4>{project.status}</h4>
+                    <h4>status:{project.status}</h4>
                     <h4>{project.share}</h4>
                     <img src={project.coverImage} alt={project.title}/>
                     <button className="btn" onClick={() => goToProjectDetails(project.id)}>Details</button>

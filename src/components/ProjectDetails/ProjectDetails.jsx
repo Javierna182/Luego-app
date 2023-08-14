@@ -29,7 +29,7 @@ function ProjectDetails() {
     const goToEdit = () => {
       history.push(`/editProject/${project.id}`)
     }
-    
+
     if (project === undefined){
       return null;
     }
@@ -44,7 +44,7 @@ function ProjectDetails() {
                 <div key={project.id}>
                     <h3>{project.title}</h3>
                     <h4>{project.comments}</h4>
-                    <h4>{project.status}</h4>
+                    <h4>Status:{project.status}</h4>
                     <h4>{project.share}</h4>
                     <img src={project.coverImage} alt={project.title}/>
                     <ul>
@@ -70,7 +70,37 @@ function ProjectDetails() {
       </main>
     );
   }
-  
+
   // this allows us to use <App /> in index.js
   export default ProjectDetails;
+
+  // const toggleStatus = (toggleProject) => {
+  //   toggleProject = project.status(!project.status)
+  // }
+
+//   const toggleStatus = () => {
+//     const toggleProject = project.status(!project.status)
+//   }
+//   const toggleDescription = () => {
+//     console.log('clicked a button');
+//     // set state
+//     setIsHidden(!isHidden)
+    
+// }
+//   <button className="switchbtn" onClick={toggleDescription}>Switch</button>
+//   function completeProject(id){
+//     return fetch(`/projects/${id}`, {
+//       method: 'PUT',
+//       headers: { 'Content-Type': 'application/json' }
+//     })
+//     .then((response) => {
+//       console.log(response);
+//       getTask().then(task => setTaskList(task));
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+//   }//end completeTask
+// <div className={task.completed ? 'completed' : null}>{task.task}</div>
+//   <button className='completeBtn' type="button" onClick={() => completeTask(task.id)}>Complete</button>
   
