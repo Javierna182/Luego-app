@@ -7,6 +7,9 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  /* background-image: url("/public/images/background.jpg");
+  background-size: cover; */
+  background-color: #dbdbdb;
 }
 
 img {
@@ -32,7 +35,7 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #114dae;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -55,7 +58,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color:#2b73e7;
   text-decoration: none;
 }
 
@@ -75,6 +78,7 @@ Button
   border-color: #008183;
   color: #008183;
 }
+
 
 /* --------------------------------------------------------------------------------
 Alert
@@ -109,4 +113,187 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+/* --------------------------------------------------------------------------------
+button edit
+-------------------------------------------------------------------------------- */
+.btnEdit {
+  display: inline-block;
+  padding: 10px 20px;
+  border-color: #014041;
+  border-width: 1px 1px 3px;
+  border-radius: 4px;
+  background-color: #ec8d00;
+  color: #f8f8f8;
+  font-size: 1.1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btnEdit_sizeMin {
+  min-height: 50px;
+  min-width: 100px;
+}
+
+.btnEdit_sizeSm {
+  padding: 10px 15px;
+  font-size: 0.8rem;
+}
+
+.btnEdit_sizeFull {
+  display: block;
+  width: 100%;
+}
+
+.btnEdit:hover {
+  background-color:#ecb638;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------------
+button delete
+-------------------------------------------------------------------------------- */
+
+.btnDelete {
+  display: inline-block;
+  padding: 10px 20px;
+  border-color: #014041;
+  border-width: 1px 1px 3px;
+  border-radius: 4px;
+  background-color: #931f1f;
+  color: #f8f8f8;
+  font-size: 1.1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btnDelete_sizeMin {
+  min-height: 50px;
+  min-width: 100px;
+}
+
+.btnDelete_sizeSm {
+  padding: 10px 15px;
+  font-size: 0.8rem;
+}
+
+.btnDelete_sizeFull {
+  display: block;
+  width: 100%;
+}
+
+.btnDelete:hover {
+  background-color:#e72b2b;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------------
+button share
+-------------------------------------------------------------------------------- */
+
+.btnShare {
+  display: inline-block;
+  padding: 10px 20px;
+  border-color: #014041;
+  border-width: 1px 1px 3px;
+  border-radius: 4px;
+  background-color: #3e6f64;
+  color: #f8f8f8;
+  font-size: 1.1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btnShare_sizeMin {
+  min-height: 50px;
+  min-width: 100px;
+}
+
+.btnShare_sizeSm {
+  padding: 10px 15px;
+  font-size: 0.8rem;
+}
+
+.btnShare_sizeFull {
+  display: block;
+  width: 100%;
+}
+
+.btnShare:hover {
+  background-color:#59887e;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------------
+button details
+-------------------------------------------------------------------------------- */
+
+.btnDetails {
+  display: inline-block;
+  padding: 10px 20px;
+  border-color: #014041;
+  border-width: 1px 1px 3px;
+  border-radius: 4px;
+  background-color: #cd8f00;
+  color: #f8f8f8;
+  font-size: 1.1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btnDetails_sizeMin {
+  min-height: 50px;
+  min-width: 100px;
+}
+
+.btnDetails_sizeSm {
+  padding: 10px 15px;
+  font-size: 0.8rem;
+}
+
+.btnDetails_sizeFull {
+  display: block;
+  width: 100%;
+}
+
+.btnDetails:hover {
+  background-color:#eea600;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------------
+button Submit
+-------------------------------------------------------------------------------- */
+.btnSubmit {
+  display: inline-block;
+  padding: 10px 20px;
+  border-color: #014041;
+  border-width: 1px 1px 3px;
+  border-radius: 4px;
+  background-color: #34703f;
+  color: #f8f8f8;
+  font-size: 1.1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btnSubmit_sizeMin {
+  min-height: 50px;
+  min-width: 100px;
+}
+
+.btnSubmit_sizeSm {
+  padding: 10px 15px;
+  font-size: 0.8rem;
+}
+
+.btnSubmit_sizeFull {
+  display: block;
+  width: 100%;
+}
+
+.btnSubmit:hover {
+  background-color:#42a555;
+  text-decoration: none;
 }

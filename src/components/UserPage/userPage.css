@@ -1,0 +1,9 @@
+.completed{
+    text-decoration: line-through;
+    background-color: rgb(49, 117, 51);
+    border-radius: 10px;
+  }
+  
+  h2{
+    color: rgb(45, 44, 82);
+  }

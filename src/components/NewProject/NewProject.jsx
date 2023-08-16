@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Stack from '@mui/material/Stack';
 
 
 function NewProject() {
@@ -40,7 +41,8 @@ function NewProject() {
           .then(image => {
             console.log('here:', image);
             setCarouselImage(image.url);
-        }).catch(error => {
+        })
+        .catch(error => {
             console.log(error);
             alert('something went wrong!');
           })
@@ -51,11 +53,15 @@ function NewProject() {
         history.push(`/home`)
     }
 
+    const goToEdit = () => {
+      history.push(`/editProject/${project.id}`)
+    }
+
     const addProject = (event) => {
       event.preventDefault();
       if (id) {
         dispatch({ type: 'EDIT_PROJECT', payload:{ title, comments, share, status, coverImage, id }, history})
-
+        goToHome();
       }else{
         dispatch({ type: 'ADD_PROJECT', payload: {title, comments, share, status, coverImage}, history});
         dispatch({ type: 'ADD_IMAGE', payload: {carouselImage}, history});
@@ -66,6 +72,7 @@ function NewProject() {
         setStatus('');
         setCoverImage('');
         // setCarouselImage('');
+        goToHome();
       }
     };
 
@@ -95,10 +102,8 @@ function NewProject() {
       <main>
         <div className="container">
         <h1>{id ? 'Edit Project' : 'New Project'}</h1>
-        {/* <h3>{id}</h3> */}
         <button className="btn" type="submit" onClick={goToHome}>Go To Home</button>
 
-        {/* <section className="newProject" onSubmit={addProject}> */}
         <section className="newProject">
             <p>Name:<input value={title} type="text" placeholder="New Name" onChange={(event) => {
               // console.log(event)
@@ -106,19 +111,19 @@ function NewProject() {
               }}/></p>
             <p>Comments:<textarea value={comments} placeholder="Comments" name="description" onChange={(event) => setComments(event.target.value)}/></p>
             {/* <p>status:<input value={status} type="checkbox" placeholder="Satus" onChange={(event) => setStatus(event.target.checked)}/></p> */}
-            <p>Share:<input value={share} type="text" placeholder="Share" onChange={(event) => setShare(event.target.value)}/></p>
+            {/* <p>Share:<input value={share} type="text" placeholder="Share" onChange={(event) => setShare(event.target.value)}/></p> */}
             <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
             <p>Image carousel: <input value={carouselImage} type="text" placeholder="Image" onChange={(event) => setCarouselImage(event.target.value)}/></p>
             <div>
-              <h3>status:</h3>
-            { !status ? <p>false</p> : <p>true</p> }
+              <h3>{ !status ? <p>Status: Uncomplete</p> : <p>Status: Complete</p> }</h3>
             </div>
-            <button onClick={toggleStatus}>Uncomplete</button>
-            <button>Share</button>
-            {/* <button>Delete</button> */}
-            <button className="btn" onClick={addImage}>Add image</button>
-            <button className="btn" onClick={addProject}>Submit</button>
-            <button className="btn" onClick={delteProject}>Delete</button>
+            <Stack direction="row" spacing={2}>
+              <button className="btn" onClick={toggleStatus}>Status</button>
+              {/* <button className="btn">Share</button> */}
+              <button className="btn" onClick={addImage}>Add image</button>
+              <button className="btnSubmit" onClick={addProject}>Submit</button>
+              <button className="btnDelete" onClick={delteProject}>Delete</button>
+            </Stack>
         </section>
         </div>
       </main>
