@@ -23,6 +23,19 @@ function* addProjectSaga(action){
         if (!response.ok) {
             throw new Error("Network response was not OK");
         }
+        let project = yield response.json();
+        console.log(project.id); // this should be the id of the new project
+        for( let image of action.images) {
+            // upload each image, passsing image data AND projectId
+            const formData = new FormData();
+            formData.append('image', image.data);
+            let postUrl = `/api/aws?imageName=${image.fileName}&imageType=${image.fileType}&projectId=${projectId}`;
+            yield fetch(postUrl,{
+                method: 'POST',
+                body: formData,
+                headers: { 'Content-Type': 'multipart/form-data' }
+            });
+        }
         yield put({ type: 'FETCH_PROJECTS'});
     }catch (error) {
         console.log('Adding a project failed:', error);

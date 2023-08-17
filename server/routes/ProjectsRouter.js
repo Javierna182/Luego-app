@@ -25,9 +25,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('in projects router post:', req.body)
   const { title, comments, share, status, coverImage } = req.body;
   const queryText = `INSERT INTO "projects" ("title", "comments", "share", "status", "coverImage", "user_id") 
-                    VALUES ($1, $2, $3, $4, $5, $6);`;
+                    VALUES ($1, $2, $3, $4, $5, $6) returning "id";`;
   pool.query(queryText, [title, comments, share, status, coverImage, req.user.id]).then((results) => {
-    res.sendStatus(201);
+    res.send(results.rows[0]);
   }).catch((error) => {
     console.log(error);
     res.sendStatus(500);

@@ -12,6 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const projectsRouter = require('./routes/ProjectsRouter');
 const imagesRouter = require('./routes/imagesRouter');
+const awsRouter = require('./routes/awsRouter');
 
 
 // Express middleware
@@ -28,6 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/projects', projectsRouter);
 app.use('/api/images', imagesRouter);
+app.use('/api/aws', awsRouter);
 
 // Serve static files
 app.use(express.static('build'));

@@ -4,6 +4,13 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Stack from '@mui/material/Stack';
 
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+
 
 function NewProject() {
     const dispatch = useDispatch();
@@ -63,8 +70,9 @@ function NewProject() {
         dispatch({ type: 'EDIT_PROJECT', payload:{ title, comments, share, status, coverImage, id }, history})
         goToHome();
       }else{
-        dispatch({ type: 'ADD_PROJECT', payload: {title, comments, share, status, coverImage}, history});
-        dispatch({ type: 'ADD_IMAGE', payload: {carouselImage}, history});
+        let imageList = [{data: selectedFile, fileName, fileType}];
+        dispatch({ type: 'ADD_PROJECT', payload: {title, comments, share, status, coverImage}, imageList, history});
+        // dispatch({ type: 'ADD_IMAGE', payload: {carouselImage}, history});
         console.log( {title, comments, share, status, coverImage})
         setTitle('');
         setComments('');
@@ -100,32 +108,85 @@ function NewProject() {
 
     return (
       <main>
-        <div className="container">
-        <h1>{id ? 'Edit Project' : 'New Project'}</h1>
+        <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              '& > *': {
+                m: 1,
+              },
+            }}
+          >
+        
+        <h1>{id ? 'Edit Project' : 'New Project'}</h1>  
         <button className="btn" type="submit" onClick={goToHome}>Go To Home</button>
 
-        <section className="newProject">
-            <p>Name:<input value={title} type="text" placeholder="New Name" onChange={(event) => {
+        <Box sx={{ flexGrow: 1,width: '100%', maxWidth: 860  }}>
+          <Grid container spacing={2}>
+            <Grid item xs={5} >
+            <TextField
+              id="standard-multiline-flexible"
+              label="Project Name"
+              multiline
+              maxRows={4}
+              variant="standard"
+              value={title} type="text" placeholder="New Name" onChange={(event) => {
+                // console.log(event)
+                setTitle(event.target.value)
+              }}
+            />
+            {/* <p>Name:<input value={title} type="text" placeholder="New Name" onChange={(event) => {
               // console.log(event)
               setTitle(event.target.value)
-              }}/></p>
-            <p>Comments:<textarea value={comments} placeholder="Comments" name="description" onChange={(event) => setComments(event.target.value)}/></p>
-            {/* <p>status:<input value={status} type="checkbox" placeholder="Satus" onChange={(event) => setStatus(event.target.checked)}/></p> */}
-            {/* <p>Share:<input value={share} type="text" placeholder="Share" onChange={(event) => setShare(event.target.value)}/></p> */}
-            <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
-            <p>Image carousel: <input value={carouselImage} type="text" placeholder="Image" onChange={(event) => setCarouselImage(event.target.value)}/></p>
+            }}/></p> */}
+            {/* <Divider variant="middle" /> */}
+            <TextField
+              id="filled-multiline-static"
+              label="Comments"
+              multiline
+              rows={4}
+              // defaultValue="Default Value"
+              value={comments}
+              onChange={(event) => setComments(event.target.value)}
+              sx={{ flexGrow: 1,width: '100%', maxWidth: 300  }}
+            />
+            {/* <p>Comments:<textarea value={comments} placeholder="Comments" name="description" onChange={(event) => setComments(event.target.value)}/></p> */}
             <div>
               <h3>{ !status ? <p>Status: Uncomplete</p> : <p>Status: Complete</p> }</h3>
             </div>
-            <Stack direction="row" spacing={2}>
-              <button className="btn" onClick={toggleStatus}>Status</button>
-              {/* <button className="btn">Share</button> */}
-              <button className="btn" onClick={addImage}>Add image</button>
-              <button className="btnSubmit" onClick={addProject}>Submit</button>
-              <button className="btnDelete" onClick={delteProject}>Delete</button>
-            </Stack>
-        </section>
-        </div>
+              <Stack sx={{margin:5}} direction="row" spacing={2}>
+                <button className="btn" onClick={toggleStatus}>Status</button>
+                {/* <button className="btn">Share</button> */}
+                {/* <button className="btn" onClick={addImage}>Add image</button> */}
+                <button className="btnSubmit" onClick={addProject}>Submit</button>
+                <button className="btnDelete" onClick={delteProject}>Delete</button>
+              </Stack>
+            </Grid>
+            <Box sx={{ flexGrow: 1,width: '100%', maxWidth: 350}}>
+              <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+              <Grid item xs={6}>
+              <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
+              </Grid>
+              <Grid item xs={6}>
+              <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
+              </Grid>
+              <Grid item xs={6}>
+              <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
+              </Grid>
+              <Grid item xs={6}>
+              <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
+              </Grid>
+              {/* <p>status:<input value={status} type="checkbox" placeholder="Satus" onChange={(event) => setStatus(event.target.checked)}/></p> */}
+              {/* <p>Share:<input value={share} type="text" placeholder="Share" onChange={(event) => setShare(event.target.value)}/></p> */}
+              {/* <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p> */}
+              {/* <p>Image carousel: <input value={carouselImage} type="text" placeholder="Image" onChange={(event) => setCarouselImage(event.target.value)}/></p> */}
+              </Grid>
+            </Box>
+            
+        </Grid>
+        </Box>    
+        </Box>
       </main>
     );
   }
