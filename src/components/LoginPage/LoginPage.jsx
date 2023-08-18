@@ -6,6 +6,7 @@ function LoginPage() {
   const history = useHistory();
 
   return (
+    <main>
     <div>
       <LoginForm />
 
@@ -16,11 +17,12 @@ function LoginPage() {
           onClick={() => {
             history.push('/registration');
           }}
-        >
+          >
           Register
         </button>
       </center>
     </div>
+   </main>
   );
 }
 

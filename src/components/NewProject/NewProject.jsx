@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+import { Warning } from '@mui/icons-material';
 
 
 function NewProject() {
@@ -82,20 +83,20 @@ function NewProject() {
       }
     }, [id]);
 
-    useEffect(() => {
-      if (id) {
-        fetch(`/api/images/${id}`)
-          .then(response => response.json())
-          .then(image => {
-            console.log('here:', image);
-            setCarouselImage(image.url);
-        })
-        .catch(error => {
-            console.log(error);
-            alert('something went wrong!');
-          })
-      }
-    }, [id]);
+    // useEffect(() => {
+    //   if (id) {
+    //     fetch(`/api/images/${id}`)
+    //       .then(response => response.json())
+    //       .then(image => {
+    //         console.log('here:', image);
+    //         setCarouselImage(image.url);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //         alert('something went wrong!');
+    //       })
+    //   }
+    // }, [id]);
     
     const goToHome = () => {
         history.push(`/home`)
@@ -127,22 +128,25 @@ function NewProject() {
       }
     };
 
-    const addImage = (event) => {
-      event.preventDefault();
-      if (id) {
-        dispatch({ type: 'EDIT_IMAGE', payload:{ carouselImage, id }, history})
+    // const addImage = (event) => {
+    //   event.preventDefault();
+    //   if (id) {
+    //     dispatch({ type: 'EDIT_IMAGE', payload:{ carouselImage, id }, history})
 
-      }else{
-        dispatch({ type: 'ADD_IMAGE', payload: {carouselImage}, history});
-        console.log( {carouselImage})
-        setCarouselImage('');
-      }
-    };
+    //   }else{
+    //     dispatch({ type: 'ADD_IMAGE', payload: {carouselImage}, history});
+    //     console.log( {carouselImage})
+    //     setCarouselImage('');
+    //   }
+    // };
     
 
     const delteProject = () =>{
-      dispatch({type: 'DELETE_PROJECT', payload:id})
-      goToHome();
+      let result = confirm('Are you sure?');
+      if(result == true){
+        dispatch({type: 'DELETE_PROJECT', payload:id})
+        goToHome();
+      }
     }
 
     const toggleStatus = () => {

@@ -24,6 +24,12 @@ function UserPage() {
   const projects = useSelector(store => store.projects);
   const history = useHistory();
   const [isMasked, setIsMasked] = useState(true);
+  const [statusFilter, setStatusFilter] = useState(null);
+
+let filteredProjects = projects; 
+if (statusFilter !== null){
+  filteredProjects = projects.filter((project) => project.status === statusFilter)
+}
 
   useEffect(() => {
     dispatch({ type: 'FETCH_PROJECTS'});
@@ -38,9 +44,6 @@ function UserPage() {
   }
   const [spacing, setSpacing] = React.useState(0);
 
-  const shareImage = () => {
-    return alert('')
-  }
   // toggles if we show the link or not
   const toggleMask = () => {
     console.log('clicked a button');
@@ -64,20 +67,16 @@ function UserPage() {
       <button className="btn" onClick={() => goToNewProject()}>Add New +</button>
         <h2>Don't forget your good ideas!</h2>
           <ButtonGroup variant="text" aria-label="text button group">
-            <Button>All</Button>
-            <Button>Uncomplete</Button>
-            <Button>Complete</Button>
+            <Button onClick={() => setStatusFilter(null)}>All</Button>
+            <Button onClick={() => setStatusFilter(false)}>Uncomplete</Button>
+            <Button onClick={() => setStatusFilter(true)}>Complete</Button>
           </ButtonGroup> 
-        {/* <section className="projects"> */}
         <Grid sx={{ flexGrow: 1 }} container spacing={1}  margin={1}>
           <Grid item xs={12}>
             <Grid container justifyContent="space-around" spacing={spacing} >
-            {projects.map(project => {
+            {filteredProjects.map(project => {
                 return(
                 <Card sx={{ maxWidth: 250, minWidth:250, backgroundColor:'#eeeeee'}} key={project.id} >
-                  {/* <Typography gutterBottom variant="h5" component="div" padding={1}>
-                      {project.title}
-                    </Typography> */}
                   <CardMedia
                     component="img"
                     alt= {project.title}
@@ -95,7 +94,7 @@ function UserPage() {
                     { !project.status ? <span>Status: Uncomplete</span> : <span>Status: Complete</span> }
                     </Typography>
                     <Typography  gutterBottom variant="h7">
-                        { !isMasked && <p>Link: {project.coverImage}</p>}
+                        { !isMasked && <p>Link: {project.coverImage}</p>}           
                     </Typography>
                   </CardContent>
                   <Box
@@ -109,26 +108,18 @@ function UserPage() {
                       }}
                     >
                   <CardActions sx={{alignItems: 'center'}}>
-                    {/* <button size="small" className="btn" onClick={() => shareImage()}>Share: {project.share}</button> */}
                     <button size="small" className="btn" onClick={toggleMask}>Share</button>
                     <button size="small"
                      className="btnDetails" onClick={() => goToProjectDetails(project.id)}
                      >Details</button>
                   </CardActions>
                   </Box>
-                    {/* <h3>{project.title}</h3>
-                    <h4>{project.comments}</h4>
-                    <h4>status:{project.status}</h4>
-                    <h4>{project.share}</h4>
-                    <img src={project.coverImage} alt={project.title}/>
-                    <button className="btn" onClick={() => goToProjectDetails(project.id)}>Details</button> */}
                 </Card>
                 );
           })}
           </Grid>
           </Grid>
           </Grid>
-      {/* </section> */}
     {/* <h2>Welcome, {user.username}!</h2>
     <p>Your ID is: {user.id}</p>
     <LogOutButton className="btn" /> */}
