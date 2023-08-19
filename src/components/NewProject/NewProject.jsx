@@ -173,7 +173,7 @@ function NewProject() {
           )
         }
         <br />
-        <button type="submit">Submit</button>
+        {/* <button type="submit">Submit</button> */}
       </form>
 
       <h2>Images</h2>
