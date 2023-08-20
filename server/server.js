@@ -14,6 +14,9 @@ const projectsRouter = require('./routes/ProjectsRouter');
 const imagesRouter = require('./routes/imagesRouter');
 const awsRouter = require('./routes/awsRouter');
 
+const fileUpload = require('express-fileupload');
+// Accept file uploads
+app.use(fileUpload());
 
 // Express middleware
 app.use(express.json());

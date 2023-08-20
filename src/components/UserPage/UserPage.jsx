@@ -4,6 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useDispatch, useSelector} from 'react-redux';
 import { useState } from 'react';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,10 +13,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-
+import Chip from '@mui/material/Chip';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
-import { grey } from '@mui/material/colors';
+
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -54,6 +55,11 @@ if (statusFilter !== null){
 
   return (
     <main>
+      <center>
+        <button className="btnAddNew" onClick={() => goToNewProject()}>ADD NEW +</button>
+        <h2>Don't forget your good ideas!</h2>
+      </center>
+      <div className="container">
       <Box
       sx={{
         display: 'flex',
@@ -64,8 +70,6 @@ if (statusFilter !== null){
         },
       }}
     >
-      <button className="btn" onClick={() => goToNewProject()}>Add New +</button>
-        <h2>Don't forget your good ideas!</h2>
           <ButtonGroup variant="text" aria-label="text button group">
             <Button onClick={() => setStatusFilter(null)}>All</Button>
             <Button onClick={() => setStatusFilter(false)}>Uncomplete</Button>
@@ -76,7 +80,7 @@ if (statusFilter !== null){
             <Grid container justifyContent="space-around" spacing={spacing} >
             {filteredProjects.map(project => {
                 return(
-                <Card sx={{ maxWidth: 250, minWidth:250, backgroundColor:'#eeeeee'}} key={project.id} >
+                  <Card sx={{ maxWidth: 250, minWidth:250, backgroundColor:'#eeeeee'}} key={project.id} >
                   <CardMedia
                     component="img"
                     alt= {project.title}
@@ -91,11 +95,13 @@ if (statusFilter !== null){
                       {project.comments}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                    { !project.status ? <span>Status: Uncomplete</span> : <span>Status: Complete</span> }
+                    { !project.status ? <Chip label='Status: Uncomplete' sx={{backgroundColor:'orange', color:'white'}} /> 
+                    : <Chip label='Status: Complete' color="success" />}
+                    {/* { !project.status ? <span>Status: Uncomplete</span> : <span>Status: Complete</span> } */}
                     </Typography>
-                    <Typography  gutterBottom variant="h7">
-                        { !isMasked && <p>Link: {project.coverImage}</p>}           
-                    </Typography>
+                    {/* <Typography  gutterBottom variant="h7">         
+                        { !isMasked && <Chip label={project.coverImage} color="success" />}
+                    </Typography> */}
                   </CardContent>
                   <Box
                       sx={{
@@ -113,6 +119,7 @@ if (statusFilter !== null){
                      className="btnDetails" onClick={() => goToProjectDetails(project.id)}
                      >Details</button>
                   </CardActions>
+                  { !isMasked && <Chip label={project.coverImage} color="success" />}
                   </Box>
                 </Card>
                 );
@@ -124,9 +131,11 @@ if (statusFilter !== null){
     <p>Your ID is: {user.id}</p>
     <LogOutButton className="btn" /> */}
     </Box>
+    </div>
     </main>
   );
 }
+
 
 // this allows us to use <App /> in index.js
 export default UserPage;

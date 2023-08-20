@@ -5,7 +5,8 @@
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #012764;
+  /* background-color: #012764; */
+  background-color: rgba(4, 0, 112, 0.7);
   overflow: hidden;
   padding: 15px; 
 }

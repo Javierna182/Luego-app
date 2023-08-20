@@ -16,6 +16,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
 
 function ProjectDetails() {
 
@@ -33,10 +34,6 @@ function ProjectDetails() {
         dispatch({ type: "FETCH_IMAGES", payload: id});
     }, []);
     
-    // useEffect(() => {
-    //     dispatch({ type: "FETCH_PROJECTS", payload: project});
-    // }, []);
-    
     const goToHome = () => {
         history.push(`/home`)
     }
@@ -50,8 +47,8 @@ function ProjectDetails() {
       console.log('clicked a button');
       // set state
       setIsMasked(!isMasked)
-
-  }
+      
+    }
     
     function srcset(image, width, height, rows = 1, cols = 1) {
       return {
@@ -61,12 +58,17 @@ function ProjectDetails() {
         }&fit=crop&auto=format&dpr=2 2x`,
       };
     }
-
+    
     if (project === undefined){
       return null;
     }
     return (
       <main>
+        <center>
+        <button className="btnAddNew" type="submit" onClick={goToHome}>Go To Home</button>
+        <h1>Don't forget your good ideas!</h1>
+        </center>
+      <div className="container">
         <Box
             sx={{
               display: 'flex',
@@ -77,28 +79,20 @@ function ProjectDetails() {
               },
             }}
           >
-        <button className="btn" type="submit" onClick={goToHome}>Go To Home</button>
-
                 <Box key={project.id} sx={{ flexGrow: 1,width: '100%', maxWidth: 860  }}>
                   <Grid container spacing={2}>
                     <Grid item xs={5} >
-                      <h1>{project.title}</h1>
+                      <h1 className="ProjectName">{project.title}</h1>
                       <Divider variant="middle" />
                       <Typography gutterBottom variant="h6">{project.comments}</Typography>
-                      <Typography gutterBottom variant="h7">{ !project.status ? <p>Status: Uncomplete</p> : <p>Status: Complete</p> }</Typography>
-                      {/* <Typography  gutterBottom variant="h7">
-                        { !isMasked && <p>Link: {project.coverImage}</p>}
-                      </Typography> */}
-                      {/* <img src={project.coverImage} alt={project.title}/> */}
+                      { !project.status ? <Chip label='Status: Uncomplete' sx={{backgroundColor:'orange', color:'white'}} /> : <Chip label='Status: Complete' color="success" />}
                         <Stack sx={{margin:5}} direction="row" spacing={2}>
                           <button className="btnEdit" onClick={goToEdit}>Edit</button>
-                          {/* <button className="btn">Uncomplete</button> */}
                           <button className="btnShare" onClick={toggleMask}>Share</button>
-                          {/* <button className="btnDelete ">Delete</button> */}
                         </Stack>  
-                      <Typography  gutterBottom variant="h7">
-                        { !isMasked && <p>Link: {project.coverImage}</p>}
-                      </Typography>
+                        <Stack sx={{margin:5}} direction="row" spacing={2}>
+                        { !isMasked && <Chip label={project.coverImage} color="success" />}
+                        </Stack>
                       </Grid>
                   <Grid item xs={4}>
                     <ImageList
@@ -107,6 +101,7 @@ function ProjectDetails() {
                         height: 450,
                         // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
                         transform: 'translateZ(0)',
+                        borderRadius: '10px',
                       }}
                       rowHeight={200}
                       gap={1}
@@ -117,7 +112,7 @@ function ProjectDetails() {
                           const rows = imagesToDisplay.featured ? 2 : 1;
 
                           return(
-                            <ImageListItem key={imagesToDisplay.url} cols={cols} rows={rows}>
+                            <ImageListItem key={imagesToDisplay.url} cols={cols} rows={rows} >
                               <img {...srcset(imagesToDisplay.url, 250, 200, rows, cols)} alt={imagesToDisplay.name} loading="lazy"/>
                               <ImageListItemBar
                                   sx={{
@@ -127,14 +122,14 @@ function ProjectDetails() {
                                   }}
                                   title={imagesToDisplay.name}
                                   position="top"
-                                  actionIcon={
-                                    <IconButton
-                                      sx={{ color: 'white' }}
-                                      aria-label={`star ${imagesToDisplay.name}`}
-                                    >
-                                      <StarBorderIcon />
-                                    </IconButton>
-                                  }
+                                  // actionIcon={
+                                  //   <IconButton
+                                  //     sx={{ color: 'white' }}
+                                  //     aria-label={`star ${imagesToDisplay.name}`}
+                                  //   >
+                                  //     <StarBorderIcon />
+                                  //   </IconButton>
+                                  // }
                                   actionPosition="left"
                                 />
                               </ImageListItem>
@@ -143,14 +138,11 @@ function ProjectDetails() {
                         </ImageList>
                 </Grid>
                   </Grid>
-                </Box>
-               
-            {/* <input type="text" placeholder="New Name"/>
-            <textarea placeholder="Comments" name="description"/> */}
-            {/* <img src={} alt={} /> */}    
+                </Box> 
             <div>
             </div>
         </Box>
+        </div>
       </main>
     );
   }

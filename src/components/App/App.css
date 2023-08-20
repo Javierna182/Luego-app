@@ -7,8 +7,8 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
-  /* background-image: url("/public/images/background.jpg");
-  background-size: cover; */
+  background-image: url("/public/images/background.jpg");
+  background-size: 80%;
   background-color: #dbdbdb;
 }
 
@@ -17,12 +17,26 @@ img {
   max-width: 100%;
 }
 
+main{
+    /* background-color: #dbdbdb; */
+    /* background-color:rgba(228, 228, 228, 0.8); */
+}
+
+h1{
+  color: rgb(255, 255, 255);
+}
+
+h2{
+  color: rgb(255, 255, 255);
+}
+
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
 
 .container {
   padding: 20px;
+  background-color:rgba(228, 228, 228, 0.8);
 }
 
 /* --------------------------------------------------------------------------------
@@ -34,7 +48,7 @@ Button
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: #114dae;
   color: #f8f8f8;
   font-size: 1.1rem;
@@ -123,7 +137,7 @@ button edit
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: #ec8d00;
   color: #f8f8f8;
   font-size: 1.1rem;
@@ -160,7 +174,7 @@ button delete
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: #931f1f;
   color: #f8f8f8;
   font-size: 1.1rem;
@@ -197,7 +211,7 @@ button share
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: #3e6f64;
   color: #f8f8f8;
   font-size: 1.1rem;
@@ -234,7 +248,7 @@ button details
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: #cd8f00;
   color: #f8f8f8;
   font-size: 1.1rem;
@@ -270,7 +284,7 @@ button Submit
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
-  border-radius: 4px;
+  border-radius: 15px;
   background-color: #34703f;
   color: #f8f8f8;
   font-size: 1.1rem;
@@ -296,4 +310,75 @@ button Submit
 .btnSubmit:hover {
   background-color:#42a555;
   text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------------
+button Submit
+-------------------------------------------------------------------------------- */
+
+input[type="file"]::file-selector-button {
+  border: 2px solid #0d044b;
+  /* padding: 0.2em 0.4em; */
+  border-radius: 0.2em;
+  background-color: #28978c;
+  /* transition: 1s; */
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  border-width: 1px 1px 3px;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+input[type="file"]::-ms-browse:hover {
+  background-color: #1a5667;
+  border: 2px solid #1a5667;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #1a5667;
+  border: 2px solid #1a5667;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #1a5667;
+  border: 2px solid #1a5667;
+}
+
+/* --------------------------------------------------------------------------------
+button Add New+
+-------------------------------------------------------------------------------- */
+
+.btnAddNew {
+  display: inline-block;
+  padding: 10px 20px;
+  border-color: #000000;
+  border-width: 3px;
+  border-radius: 15px;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  color: #f8f8f8;
+  font-size: 1.1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.btnAddNew_sizeMin {
+  min-height: 50px;
+  min-width: 100px;
+}
+
+.btnAddNew_sizeSm {
+  padding: 10px 15px;
+  font-size: 0.8rem;
+}
+
+.btnAddNew_sizeFull {
+  display: block;
+  width: 100%;
+}
+
+.btnAddNew:hover {
+  background-image: linear-gradient(144deg,#5cf7ff, #267385 50%,#2300eb);
 }

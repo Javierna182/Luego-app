@@ -2,14 +2,23 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import Box from '@mui/material/Box';
 
 function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <main>
+    <div className="container">
+    <Box sx={{display: 'flex', alignItems: 'center', '& > *': {m: 1, },}}>
+    <Box sx={{ flexGrow: 1}}>
+      <center>
+      <h1 className="ProjectName">Don't forget your good ideas!</h1>
+      <img src='images/completeYP.png' width='90%' height='90%'/>
+      </center>
+      </Box>
+      <Box sx={{ flexGrow: 1}} >
       <RegisterForm />
-
       <center>
         <button
           type="button"
@@ -17,11 +26,14 @@ function RegisterPage() {
           onClick={() => {
             history.push('/login');
           }}
-        >
+          >
           Login
         </button>
       </center>
+      </Box>
+    </Box>
     </div>
+    </main>
   );
 }
 

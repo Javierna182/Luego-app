@@ -1,15 +1,23 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
+import Box from '@mui/material/Box';
 
 function LoginPage() {
   const history = useHistory();
 
   return (
     <main>
-    <div>
+      <div className="container">
+      <Box sx={{ display: 'flex',  alignItems: 'center',  '& > *': {  m: 1,  },  }}>
+      <Box sx={{ flexGrow: 1}}>
+      <center>
+      <h1 className="ProjectName">Don't forget your good ideas!</h1>
+      <img src='images/completeYP.png' width='90%' height='90%'/>
+      </center>
+      </Box>
+      <Box sx={{ flexGrow: 1}} >
       <LoginForm />
-
       <center>
         <button
           type="button"
@@ -21,7 +29,9 @@ function LoginPage() {
           Register
         </button>
       </center>
-    </div>
+    </Box>
+    </Box>
+   </div>
    </main>
   );
 }

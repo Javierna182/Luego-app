@@ -31,7 +31,8 @@ function Nav() {
       <Link to="/home">
         {/* <h2 className="nav-title">Luego app</h2> */}
         {/* <img src='images/luego-app-lsogo.png'/> */}
-        <img src='images/luego-app.png'/>
+        <img src='images/luego-app-logo.png' width='25%' height='25%'/>
+        {/* <img src={logo} width={100} height={100} /> */}
       </Link>
       
       <div>

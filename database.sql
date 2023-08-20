@@ -61,3 +61,24 @@ INSERT INTO "projects_images" ("project_id", "image_id")
 VALUES 
 (1,1), (1,2), (1,3)  --Monkey    
 ; 
+-- Table structure
+CREATE TABLE "images2" (
+	"id" SERIAL PRIMARY KEY,
+	"name" VARCHAR(1000) NOT NULL,
+	"type" VARCHAR(50) NOT NULL
+);
+
+-- JUNCTION TABLE
+
+CREATE TABLE "projects_images" (
+  "id" SERIAL PRIMARY KEY,
+  "project_id" INT REFERENCES "projects" NOT NULL,
+  "image_id" INT REFERENCES "images2" NOT NULL
+);
+
+-- SQL text to join tables
+
+ `SELECT images.id FROM projects 
+  JOIN projects_images ON projects.id = projects_images.project_id
+  JOIN  images2 ON images.id = projects_images.images_id
+  WHERE projects.id = $1;`

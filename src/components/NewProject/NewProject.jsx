@@ -6,12 +6,13 @@ import { readAndCompressImage } from 'browser-image-resizer';
 
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import { Warning } from '@mui/icons-material';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import Chip from '@mui/material/Chip';
+
 
 
 function NewProject() {
@@ -155,9 +156,14 @@ function NewProject() {
 
     return (
       <main>
-        <div>
+        <center>
+        <button className="btnAddNew" type="submit" onClick={goToHome}>Go To Home</button>
+        <h1>{id ? 'Edit Project' : 'New Project'}</h1> 
+        </center>
+      <div className="container">
+      <div>
       <form onSubmit={addProject}>
-        <input
+      <FileUploadIcon/><input 
           type="file"
           accept="image/*"
           onChange={onFileChange}
@@ -173,10 +179,7 @@ function NewProject() {
           )
         }
         <br />
-        {/* <button type="submit">Submit</button> */}
       </form>
-
-      <h2>Images</h2>
       {
         imageList.map(image => (
           <div key={image.id}>
@@ -197,9 +200,6 @@ function NewProject() {
               },
             }}
           >
-        
-        <h1>{id ? 'Edit Project' : 'New Project'}</h1>  
-        <button className="btn" type="submit" onClick={goToHome}>Go To Home</button>
 
         <Box sx={{ flexGrow: 1,width: '100%', maxWidth: 860  }}>
           <Grid container spacing={2}>
@@ -210,12 +210,13 @@ function NewProject() {
               multiline
               maxRows={4}
               variant="standard"
+              sx={{margin:'15px'}}
               value={title} type="text" placeholder="New Name" onChange={(event) => {
                 // console.log(event)
                 setTitle(event.target.value)
               }}
             />
-            <h1></h1>
+            {/* <h1></h1> */}
             {/* <p>Name:<input value={title} type="text" placeholder="New Name" onChange={(event) => {
               // console.log(event)
               setTitle(event.target.value)
@@ -229,11 +230,12 @@ function NewProject() {
               // defaultValue="Default Value"
               value={comments}
               onChange={(event) => setComments(event.target.value)}
-              sx={{ flexGrow: 1,width: '100%', maxWidth: 300  }}
+              sx={{ flexGrow: 1,width: '100%', maxWidth: 300, margin:'15px',backgroundColor:'lightgray', borderRadius:'5px' }}
             />
             {/* <p>Comments:<textarea value={comments} placeholder="Comments" name="description" onChange={(event) => setComments(event.target.value)}/></p> */}
             <div>
-              <h3>{ !status ? <p>Status: Uncomplete</p> : <p>Status: Complete</p> }</h3>
+              {/* <h3>{ !status ? <p>Status: Uncomplete</p> : <p>Status: Complete</p> }</h3> */}
+              { !status ? <Chip label='Status: Uncomplete' sx={{backgroundColor:'orange', color:'white', margin:'15px'}} /> : <Chip label='Status: Complete' color="success" sx={{margin:'15px'}} />}
             </div>
               <Stack sx={{margin:5}} direction="row" spacing={2}>
                 <button className="btn" onClick={toggleStatus}>Status</button>
@@ -268,6 +270,7 @@ function NewProject() {
         </Grid>
         </Box>    
         </Box>
+        </div>
       </main>
     );
   }
