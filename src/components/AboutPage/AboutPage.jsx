@@ -11,10 +11,13 @@ function AboutPage() {
         <h1>Don't forget your good ideas!</h1>
       </center>
       <div className="container">
+        <center><h1 className="ProjectName">Where does Luego come from?</h1></center>
       <Box sx={{ display: 'flex',  alignItems: 'center',  '& > *': {  m: 1,  },  }}>
       <Box sx={{ flexGrow: 1}} >
       <Typography gutterBottom variant="h6">I like to make digital  illustrations and turn them into stickers! 
       but this is usually a long process that takes more than a day to be completed.
+      </Typography>
+      <Typography gutterBottom variant="h6">
       Being so busy with school work and family I want to be able to keep track of my creative projects and complete 
       the ones that are collecting dust and don't forget about the good ideas.
       </Typography>
@@ -28,7 +31,7 @@ function AboutPage() {
       </Box>
       <Box sx={{ flexGrow: 1}}>
       <center>
-      <img src='images/completeYP.png' width='90%' height='90%'/>
+      <img className="fotoS" src='images/stickers.png' width='70%' height='70%'/>
       </center>
       </Box>
     </Box>

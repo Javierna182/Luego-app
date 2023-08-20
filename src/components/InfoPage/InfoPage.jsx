@@ -12,25 +12,24 @@ function InfoPage() {
       </center>
    <div className="container">
       <Box sx={{ display: 'flex',  alignItems: 'center',  '& > *': {  m: 1,  },  }}>
-      <Box sx={{ flexGrow: 1}} >
-      <Typography gutterBottom variant="h6">I like to make digital  illustrations and turn them into stickers! 
-      but this is usually a long process that takes more than a day to be completed.
-      Being so busy with school work and family I want to be able to keep track of my creative projects and complete 
-      the ones that are collecting dust and don't forget about the good ideas.
-      </Typography>
-      <Typography gutterBottom variant="h6">Luego is an app made to help creative minds who want to keep track of their projects,
-       store, develop and complete their projects.
-      </Typography>
-      <Typography gutterBottom variant="h6">The objective of this application is to 
-      help log ongoing creative ideas in a single, organized space. Additionally, this will help keep track of the status 
-      of projects and final work.
-      </Typography>
-      </Box>
       <Box sx={{ flexGrow: 1}}>
       <center>
-      <img src='images/completeYP.png' width='90%' height='90%'/>
+      <p className="ProjectName">This application was developed with Prime</p> 
+      <p className="ProjectName">Academy staff support and supervision.</p>
+        <img src='images/prime1.png' width='20%' height='20%'/>
       </center>
       </Box>
+      <Box sx={{ flexGrow: 1}} >
+        <lu> Tehcnologies used:
+          <li>Node</li>
+          <li>Express </li>
+          <li>React/ Sagas/ Redux</li>
+          <li>PostgreSQL</li>
+          <li>Passport</li>
+          <li>Material UI</li>
+          <li>AWS</li>
+        </lu>
+       </Box>
     </Box>
     </div>
    </main>
