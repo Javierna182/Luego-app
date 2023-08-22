@@ -13,6 +13,19 @@ function* fetchProjects() {
       }
 }
 
+// function*fetchImages2(){
+//     try{
+//         const response = yield fetch('/api/aws');
+//         if (!response.ok) {
+//             throw new Error("Network response was not OK");
+//         }
+//         const image = yield response.json();
+//         yield put({ type: 'SET_IMAGES', payload: image });
+//     }catch (error) {
+//         console.log('User get request failed', error);
+//       }
+//     }
+
 function* addProjectSaga(action){
     try{
         const response = yield fetch('/api/projects',{
@@ -31,12 +44,21 @@ function* addProjectSaga(action){
             const formData = new FormData();
             formData.append('image', image.data);
             let postUrl = `/api/aws?imageName=${image.fileName}&imageType=${image.fileType}&projectId=${project.id}`;
+
             yield fetch(postUrl,{
                 method: 'POST',
                 body: formData,
             });
+            if (image.cover === true) {
+                postUrl = `/api/aws/cover?imageName=${image.fileName}&imageType=${image.fileType}&projectId=${project.id}`;
+                yield fetch(postUrl,{
+                    method: 'POST',
+                    body: formData,
+                });
+            }
         }
         yield put({ type: 'FETCH_PROJECTS'});
+        action.history.push(`/home`)
     }catch (error) {
         console.log('Adding a project failed:', error);
     }
@@ -77,6 +99,7 @@ function* projectsSagas(){
     yield takeEvery('ADD_PROJECT',addProjectSaga);
     yield takeEvery('EDIT_PROJECT', editProjectSaga);
     yield takeEvery('DELETE_PROJECT', deleteProjectSaga);
+    // yield takeEvery('FETCH_IMAGES2', fetchImages2);
 }
 
 export default projectsSagas;

@@ -68,7 +68,7 @@ CREATE TABLE "images2" (
 	"type" VARCHAR(50) NOT NULL
 );
 
--- JUNCTION TABLE
+-- JUNCTION TABLE with images2
 
 CREATE TABLE "projects_images" (
   "id" SERIAL PRIMARY KEY,
@@ -78,7 +78,7 @@ CREATE TABLE "projects_images" (
 
 -- SQL text to join tables
 
- `SELECT images.id FROM projects 
+ `SELECT images2.id FROM projects 
   JOIN projects_images ON projects.id = projects_images.project_id
   JOIN  images2 ON images.id = projects_images.images_id
   WHERE projects.id = $1;`

@@ -57,7 +57,7 @@ if (statusFilter !== null){
     <main>
       <center>
         <button className="btnAddNew" onClick={() => goToNewProject()}>ADD NEW +</button>
-        <h2>Don't forget your good ideas!</h2>
+        <h1>Don't forget your good ideas!</h1>
       </center>
       <div className="container">
       <Box
@@ -85,7 +85,7 @@ if (statusFilter !== null){
                     component="img"
                     alt= {project.title}
                     height="140"
-                    image= {project.coverImage}
+                    image= {`/api/aws/${project.coverImage}`}
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div" >

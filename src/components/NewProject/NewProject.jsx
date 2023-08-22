@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import Chip from '@mui/material/Chip';
-
+import UploadImage from './UploadImage';
 
 
 function NewProject() {
@@ -37,6 +37,12 @@ function NewProject() {
     // Used to display uploaded images on the page
     const [imageList, setImageList] = useState([]);
     
+    const setImageForIndex = (index, imageToAdd) => {
+      const listCopy = [...imageList];
+      listCopy[index] = imageToAdd;
+      setImageList(listCopy);
+    }
+
     const onFileChange = async (event) => {
       // Access the selected file
       const fileToUpload = event.target.files[0];
@@ -61,6 +67,7 @@ function NewProject() {
       setSelectedFile(resizedFile);
       // Create a URL that can be used in an img tag for previewing the image
       setImagePreview(URL.createObjectURL(resizedFile));
+      setImageForIndex(0, {data: resizedFile, fileName: fileToUpload.name, fileType: fileToUpload.type, cover: true})
     } else {
       alert('Please select an image');
     }
@@ -113,7 +120,7 @@ function NewProject() {
         dispatch({ type: 'EDIT_PROJECT', payload:{ title, comments, share, status, coverImage, id }, history})
         goToHome();
       }else{
-        let imageList = [{data: selectedFile, fileName, fileType}];
+        
         dispatch({ type: 'ADD_PROJECT', payload: {title, comments, share, status, coverImage}, imageList, history});
         // dispatch({ type: 'ADD_IMAGE', payload: {carouselImage}, history});
         console.log( {title, comments, share, status, coverImage})
@@ -123,7 +130,7 @@ function NewProject() {
         setStatus('');
         setCoverImage('');
         // setCarouselImage('');
-        goToHome();
+        //goToHome();
         setFileName();
         setFileType();
       }
@@ -162,7 +169,7 @@ function NewProject() {
         </center>
       <div className="container">
       <div>
-      <form onSubmit={addProject}>
+      {/* <form onSubmit={addProject}>
       <FileUploadIcon/><input 
           type="file"
           accept="image/*"
@@ -179,8 +186,8 @@ function NewProject() {
           )
         }
         <br />
-      </form>
-      {
+      </form> */}
+      {/* {
         imageList.map(image => (
           <div key={image.id}>
             <div>{image.name}</div>
@@ -188,7 +195,7 @@ function NewProject() {
             <img style={{ maxHeight: '200px' }} src={`api/images/${image.name}`} /> 
           </div>
         ))
-      }
+      } */}
     </div>
         <Box
             sx={{
@@ -249,16 +256,16 @@ function NewProject() {
               <h2></h2>
               <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
               <Grid item xs={6}>
-              <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
+              <UploadImage index={0} setImageForIndex={setImageForIndex} cover={true} />
               </Grid>
               <Grid item xs={6}>
-              <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
+              <UploadImage index={1} setImageForIndex={setImageForIndex} cover={false} />
               </Grid>
               <Grid item xs={6}>
-              <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
+              <UploadImage index={2} setImageForIndex={setImageForIndex} cover={false} />
               </Grid>
               <Grid item xs={6}>
-              <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p>
+              <UploadImage index={3} setImageForIndex={setImageForIndex} cover={false} />
               </Grid>
               {/* <p>status:<input value={status} type="checkbox" placeholder="Satus" onChange={(event) => setStatus(event.target.checked)}/></p> */}
               {/* <p>Share:<input value={share} type="text" placeholder="Share" onChange={(event) => setShare(event.target.value)}/></p> */}

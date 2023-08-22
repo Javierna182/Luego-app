@@ -52,8 +52,8 @@ function ProjectDetails() {
     
     function srcset(image, width, height, rows = 1, cols = 1) {
       return {
-        src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-        srcSet: `${image}?w=${width * cols}&h=${
+        src: `/api/aws/${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+        srcSet: `/api/aws/${image}?w=${width * cols}&h=${
           height * rows
         }&fit=crop&auto=format&dpr=2 2x`,
       };
@@ -112,8 +112,8 @@ function ProjectDetails() {
                           const rows = imagesToDisplay.featured ? 2 : 1;
 
                           return(
-                            <ImageListItem key={imagesToDisplay.url} cols={cols} rows={rows} >
-                              <img {...srcset(imagesToDisplay.url, 250, 200, rows, cols)} alt={imagesToDisplay.name} loading="lazy"/>
+                            <ImageListItem key={imagesToDisplay.name} cols={cols} rows={rows} >
+                              <img {...srcset(imagesToDisplay.name, 250, 200, rows, cols)} alt={imagesToDisplay.name} loading="lazy"/>
                               <ImageListItemBar
                                   sx={{
                                     background:

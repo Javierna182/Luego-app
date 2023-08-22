@@ -16,7 +16,7 @@ function InfoPage() {
       <center>
       <p className="ProjectName">This application was developed with Prime</p> 
       <p className="ProjectName">Academy staff support and supervision.</p>
-        <img src='images/prime1.png' width='20%' height='20%'/>
+        <img src='images/prime1.png' width='40%' height='40%'/>
       </center>
       </Box>
       <Box sx={{ flexGrow: 1}} >
