@@ -13,19 +13,6 @@ function* fetchProjects() {
       }
 }
 
-// function*fetchImages2(){
-//     try{
-//         const response = yield fetch('/api/aws');
-//         if (!response.ok) {
-//             throw new Error("Network response was not OK");
-//         }
-//         const image = yield response.json();
-//         yield put({ type: 'SET_IMAGES', payload: image });
-//     }catch (error) {
-//         console.log('User get request failed', error);
-//       }
-//     }
-
 function* addProjectSaga(action){
     try{
         const response = yield fetch('/api/projects',{
@@ -99,7 +86,6 @@ function* projectsSagas(){
     yield takeEvery('ADD_PROJECT',addProjectSaga);
     yield takeEvery('EDIT_PROJECT', editProjectSaga);
     yield takeEvery('DELETE_PROJECT', deleteProjectSaga);
-    // yield takeEvery('FETCH_IMAGES2', fetchImages2);
 }
 
 export default projectsSagas;

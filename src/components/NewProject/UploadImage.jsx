@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { readAndCompressImage } from 'browser-image-resizer';
+import Divider from '@mui/material/Divider';
+
 function UploadImage({index, setImageForIndex, cover}) {
 
         // Selected image preview
@@ -32,23 +34,26 @@ function UploadImage({index, setImageForIndex, cover}) {
         }
         return (
             <>
-                <p>Image:</p>
-                <FileUploadIcon/><input 
+                
+                <h3 className="ProjectName">Image:</h3>
+                {/* <FileUploadIcon/> */}
+                <input 
                     type="file"
                     accept="image/*"
                     onChange={onFileChange}
                     />
                     {
-                    imagePreview && (
+                      imagePreview && (
                         <>
-                        <br />
-                        <br />
-                        <p>Preview</p>
+                        {/* <br />
+                        <br /> */}
                         <img style={{maxHeight: '100px'}} src={imagePreview} />
+                        {/* <p>Preview</p> */}
                         </>
                     )
-                    }
-                    <br />
+                  }
+                  <Divider variant="middle" sx={{marginTop:'5px'}} />
+                    {/* <br /> */}
             </>
         )
 }

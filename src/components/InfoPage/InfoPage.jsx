@@ -8,7 +8,7 @@ function InfoPage() {
     <main>
     <center>
       <img src='images/luego-app-logo.png' width='29%' height='29%'/>
-        <h1>Don't forget your good ideas!</h1>
+      <h1>Project tracking for creative minds</h1>
       </center>
    <div className="container">
       <Box sx={{ display: 'flex',  alignItems: 'center',  '& > *': {  m: 1,  },  }}>

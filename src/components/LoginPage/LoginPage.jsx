@@ -8,6 +8,10 @@ function LoginPage() {
 
   return (
     <main>
+       <center>
+      <img src='images/luego-app-logo.png' width='29%' height='29%'/>
+      <h1>Project tracking for creative minds</h1>
+      </center>
       <div className="container">
       <Box sx={{ display: 'flex',  alignItems: 'center',  '& > *': {  m: 1,  },  }}>
       <Box sx={{ flexGrow: 1}}>

@@ -86,9 +86,10 @@ function ProjectDetails() {
                       <Divider variant="middle" />
                       <Typography gutterBottom variant="h6">{project.comments}</Typography>
                       { !project.status ? <Chip label='Status: Uncomplete' sx={{backgroundColor:'orange', color:'white'}} /> : <Chip label='Status: Complete' color="success" />}
-                        <Stack sx={{margin:5}} direction="row" spacing={2}>
-                          <button className="btnEdit" onClick={goToEdit}>Edit</button>
-                          <button className="btnShare" onClick={toggleMask}>Share</button>
+                        <Stack sx={{marginTop:'20px'}} direction="row" spacing={2}>
+                          <button className="btn" onClick={goToEdit}>Edit</button>
+                          {/* <button className="btnEdit" onClick={goToEdit}>Edit</button> */}
+                          {/* <button className="btnShare" onClick={toggleMask}>Share</button> */}
                         </Stack>  
                         <Stack sx={{margin:5}} direction="row" spacing={2}>
                         { !isMasked && <Chip label={project.coverImage} color="success" />}
@@ -117,10 +118,10 @@ function ProjectDetails() {
                               <ImageListItemBar
                                   sx={{
                                     background:
-                                      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-                                      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                                      'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, ' +
+                                      'rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                                   }}
-                                  title={imagesToDisplay.name}
+                                  // title={imagesToDisplay.name}
                                   position="top"
                                   // actionIcon={
                                   //   <IconButton

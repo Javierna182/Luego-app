@@ -90,29 +90,14 @@ function NewProject() {
           })
       }
     }, [id]);
-
-    // useEffect(() => {
-    //   if (id) {
-    //     fetch(`/api/images/${id}`)
-    //       .then(response => response.json())
-    //       .then(image => {
-    //         console.log('here:', image);
-    //         setCarouselImage(image.url);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //         alert('something went wrong!');
-    //       })
-    //   }
-    // }, [id]);
     
     const goToHome = () => {
         history.push(`/home`)
     }
 
-    const goToEdit = () => {
-      history.push(`/editProject/${project.id}`)
-    }
+    // const goToEdit = () => {
+    //   history.push(`/editProject/${project.id}`)
+    // }
 
     const addProject = (event) => {
       event.preventDefault();
@@ -120,34 +105,18 @@ function NewProject() {
         dispatch({ type: 'EDIT_PROJECT', payload:{ title, comments, share, status, coverImage, id }, history})
         goToHome();
       }else{
-        
         dispatch({ type: 'ADD_PROJECT', payload: {title, comments, share, status, coverImage}, imageList, history});
-        // dispatch({ type: 'ADD_IMAGE', payload: {carouselImage}, history});
         console.log( {title, comments, share, status, coverImage})
         setTitle('');
         setComments('');
         setShare('');
         setStatus('');
         setCoverImage('');
-        // setCarouselImage('');
         //goToHome();
         setFileName();
         setFileType();
       }
     };
-
-    // const addImage = (event) => {
-    //   event.preventDefault();
-    //   if (id) {
-    //     dispatch({ type: 'EDIT_IMAGE', payload:{ carouselImage, id }, history})
-
-    //   }else{
-    //     dispatch({ type: 'ADD_IMAGE', payload: {carouselImage}, history});
-    //     console.log( {carouselImage})
-    //     setCarouselImage('');
-    //   }
-    // };
-    
 
     const delteProject = () =>{
       let result = confirm('Are you sure?');
@@ -168,35 +137,6 @@ function NewProject() {
         <h1>{id ? 'Edit Project' : 'New Project'}</h1> 
         </center>
       <div className="container">
-      <div>
-      {/* <form onSubmit={addProject}>
-      <FileUploadIcon/><input 
-          type="file"
-          accept="image/*"
-          onChange={onFileChange}
-        />
-        {
-          imagePreview && (
-            <>
-              <br />
-              <br />
-              <p>Preview</p>
-              <img style={{maxHeight: '100px'}} src={imagePreview} />
-            </>
-          )
-        }
-        <br />
-      </form> */}
-      {/* {
-        imageList.map(image => (
-          <div key={image.id}>
-            <div>{image.name}</div>
-            <div>{image.type}</div>
-            <img style={{ maxHeight: '200px' }} src={`api/images/${image.name}`} /> 
-          </div>
-        ))
-      } */}
-    </div>
         <Box
             sx={{
               display: 'flex',
@@ -208,9 +148,9 @@ function NewProject() {
             }}
           >
 
-        <Box sx={{ flexGrow: 1,width: '100%', maxWidth: 860  }}>
+        <Box sx={{ flexGrow: 1,width: '100%', maxWidth: 860}}>
           <Grid container spacing={2}>
-            <Grid item xs={5} >
+            <Grid item xs={5}>
             <TextField 
               id="filled-multiline-static"
               label="Project Name"
@@ -223,12 +163,6 @@ function NewProject() {
                 setTitle(event.target.value)
               }}
             />
-            {/* <h1></h1> */}
-            {/* <p>Name:<input value={title} type="text" placeholder="New Name" onChange={(event) => {
-              // console.log(event)
-              setTitle(event.target.value)
-            }}/></p> */}
-            {/* <Divider variant="middle" /> */}
             <TextField
               id="filled-multiline-static"
               label="Comments"
@@ -237,26 +171,22 @@ function NewProject() {
               // defaultValue="Default Value"
               value={comments}
               onChange={(event) => setComments(event.target.value)}
-              sx={{ flexGrow: 1,width: '100%', maxWidth: 300, margin:'15px',backgroundColor:'lightgray', borderRadius:'5px' }}
+              sx={{ flexGrow: 1,width: '100%', maxWidth: 300, margin:'15px', borderRadius:'5px' }}
             />
-            {/* <p>Comments:<textarea value={comments} placeholder="Comments" name="description" onChange={(event) => setComments(event.target.value)}/></p> */}
             <div>
-              {/* <h3>{ !status ? <p>Status: Uncomplete</p> : <p>Status: Complete</p> }</h3> */}
               { !status ? <Chip label='Status: Uncomplete' sx={{backgroundColor:'orange', color:'white', margin:'15px'}} /> : <Chip label='Status: Complete' color="success" sx={{margin:'15px'}} />}
             </div>
+            <Divider variant="middle" />
               <Stack sx={{margin:5}} direction="row" spacing={2}>
                 <button className="btn" onClick={toggleStatus}>Status</button>
-                {/* <button className="btn">Share</button> */}
-                {/* <button className="btn" onClick={addImage}>Add image</button> */}
                 <button className="btnSubmit" onClick={addProject}>Submit</button>
                 <button className="btnDelete" onClick={delteProject}>Delete</button>
               </Stack>
             </Grid>
-            <Box sx={{ flexGrow: 1,width: '100%', maxWidth: 350}}>
-              <h2></h2>
-              <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
+            <Box sx={{ flexGrow: 1,width: '100%', maxWidth: 350, paddingLeft:'50px'}}>
+              <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 15, md: 10 }}>
               <Grid item xs={6}>
-              <UploadImage index={0} setImageForIndex={setImageForIndex} cover={true} />
+              <UploadImage index={0} setImageForIndex={setImageForIndex} cover={false} />
               </Grid>
               <Grid item xs={6}>
               <UploadImage index={1} setImageForIndex={setImageForIndex} cover={false} />
@@ -265,15 +195,10 @@ function NewProject() {
               <UploadImage index={2} setImageForIndex={setImageForIndex} cover={false} />
               </Grid>
               <Grid item xs={6}>
-              <UploadImage index={3} setImageForIndex={setImageForIndex} cover={false} />
+              <UploadImage index={3} setImageForIndex={setImageForIndex} cover={true} />
               </Grid>
-              {/* <p>status:<input value={status} type="checkbox" placeholder="Satus" onChange={(event) => setStatus(event.target.checked)}/></p> */}
-              {/* <p>Share:<input value={share} type="text" placeholder="Share" onChange={(event) => setShare(event.target.value)}/></p> */}
-              {/* <p>Image<input value={coverImage} type="text" placeholder="Image" onChange={(event) => setCoverImage(event.target.value)}/></p> */}
-              {/* <p>Image carousel: <input value={carouselImage} type="text" placeholder="Image" onChange={(event) => setCarouselImage(event.target.value)}/></p> */}
               </Grid>
-            </Box>
-            
+            </Box>       
         </Grid>
         </Box>    
         </Box>
@@ -377,3 +302,32 @@ function NewProject() {
 //   // this allows us to use <App /> in index.js
 //   export default NewProject;
   
+{/* <div>
+<form onSubmit={addProject}>
+<FileUploadIcon/><input 
+    type="file"
+    accept="image/*"
+    onChange={onFileChange}
+  />
+  {
+    imagePreview && (
+      <>
+        <br />
+        <br />
+        <p>Preview</p>
+        <img style={{maxHeight: '100px'}} src={imagePreview} />
+      </>
+    )
+  }
+  <br />
+</form>
+{
+  imageList.map(image => (
+    <div key={image.id}>
+      <div>{image.name}</div>
+      <div>{image.type}</div>
+      <img style={{ maxHeight: '200px' }} src={`api/images/${image.name}`} /> 
+    </div>
+  ))
+}
+</div> */}

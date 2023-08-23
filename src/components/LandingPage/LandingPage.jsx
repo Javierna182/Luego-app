@@ -15,6 +15,7 @@ function LandingPage() {
   };
 
   return (
+    <main>
     <div className="container">
       <Box sx={{ display: 'flex',  alignItems: 'center',  '& > *': {  m: 1,  },  }}>
       <Box sx={{ flexGrow: 1}}>
@@ -36,6 +37,7 @@ function LandingPage() {
           </Box>
       </Box>
     </div>
+    </main>
   );
 }
 

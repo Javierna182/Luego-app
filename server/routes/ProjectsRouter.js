@@ -73,7 +73,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   let projectIndex = req.params.id;
   let queryUpdate =`
-  DELETE FROM "projects" 
+  DELETE FROM "projects"
   WHERE id = $1;
   `;
   pool.query(queryUpdate, [projectIndex])

@@ -18,6 +18,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 
 
+
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const dispatch = useDispatch();
@@ -63,6 +64,8 @@ if (statusFilter !== null){
       <Box
       sx={{
         display: 'flex',
+        paddingBottom: {xs:'5px', md:0},
+        paddingTop: {xs:'5px', md:0},
         flexDirection: 'column',
         alignItems: 'center',
         '& > *': {
@@ -80,7 +83,7 @@ if (statusFilter !== null){
             <Grid container justifyContent="space-around" spacing={spacing} >
             {filteredProjects.map(project => {
                 return(
-                  <Card sx={{ maxWidth: 250, minWidth:250, backgroundColor:'#eeeeee'}} key={project.id} >
+                  <Card sx={{ maxWidth: 250, minWidth:250, backgroundColor:'#eeeeee', marginTop:'15px'}} key={project.id} >
                   <CardMedia
                     component="img"
                     alt= {project.title}
@@ -88,20 +91,18 @@ if (statusFilter !== null){
                     image= {`/api/aws/${project.coverImage}`}
                   />
                   <CardContent>
+                    <center>
                     <Typography gutterBottom variant="h5" component="div" >
                       {project.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       {project.comments}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" sx={{paddingTop:'15px'}}>
                     { !project.status ? <Chip label='Status: Uncomplete' sx={{backgroundColor:'orange', color:'white'}} /> 
                     : <Chip label='Status: Complete' color="success" />}
-                    {/* { !project.status ? <span>Status: Uncomplete</span> : <span>Status: Complete</span> } */}
                     </Typography>
-                    {/* <Typography  gutterBottom variant="h7">         
-                        { !isMasked && <Chip label={project.coverImage} color="success" />}
-                    </Typography> */}
+                    </center>
                   </CardContent>
                   <Box
                       sx={{
@@ -113,13 +114,13 @@ if (statusFilter !== null){
                         },
                       }}
                     >
-                  <CardActions sx={{alignItems: 'center'}}>
-                    <button size="small" className="btn" onClick={toggleMask}>Share</button>
                     <button size="small"
-                     className="btnDetails" onClick={() => goToProjectDetails(project.id)}
+                     className="btn" onClick={() => goToProjectDetails(project.id)}
                      >Details</button>
+                  <CardActions>
+                    {/* <button size="small" className="btn" onClick={toggleMask}>Share</button> */}
                   </CardActions>
-                  { !isMasked && <Chip label={project.coverImage} color="success" />}
+                  {/* { !isMasked && <Chip label={project.coverImage} color="success" />} */}
                   </Box>
                 </Card>
                 );
