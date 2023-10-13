@@ -23,18 +23,18 @@ CREATE TABLE "projects" (
 
 -- IMAGES TABLE
 
-CREATE TABLE "images" (
-  "id" SERIAL PRIMARY KEY,
-  "name" VARCHAR(80) NOT NULL,
-  "url" TEXT NOT NULL
-);
--- JUNCTION TABLE
+-- CREATE TABLE "images" (
+--   "id" SERIAL PRIMARY KEY,
+--   "name" VARCHAR(80) NOT NULL,
+--   "url" TEXT NOT NULL
+-- );
+-- -- JUNCTION TABLE
 
-CREATE TABLE "projects_images" (
-  "id" SERIAL PRIMARY KEY,
-  "project_id" INT REFERENCES "projects" NOT NULL,
-  "image_id" INT REFERENCES "images" NOT NULL
-);
+-- CREATE TABLE "projects_images" (
+--   "id" SERIAL PRIMARY KEY,
+--   "project_id" INT REFERENCES "projects" NOT NULL,
+--   "image_id" INT REFERENCES "images" NOT NULL
+-- );
 
 -- SQL text to join tables
 
@@ -82,3 +82,10 @@ CREATE TABLE "projects_images" (
   JOIN projects_images ON projects.id = projects_images.project_id
   JOIN  images2 ON images.id = projects_images.images_id
   WHERE projects.id = $1;`
+
+--
+ALTER TABLE "projects_images"
+ADD CONSTRAINT fk_name
+FOREIGN KEY (project_id)
+REFERENCES projects(id)
+ON DELETE CASCADE 
