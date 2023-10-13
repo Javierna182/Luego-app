@@ -50,7 +50,7 @@ Before you get started, make sure you have the following software installed on y
 * [Material UI](https://mui.com/)
 * [Postgres](https://www.postgresql.org/)
 * [Amazon Web Services](https://aws.amazon.com/)
-* [Passport]
+* [Passport](https://www.passportjs.org/)
 
 ## Author
 
